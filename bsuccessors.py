@@ -24,10 +24,12 @@ def bsuccessors(state):
                       t + max(a, b)),
                      (a, b, '<-'))
                     for a in there if a is not 'light'
-                    for b in there if b is not 'light')  
-        
+                    for b in there if b is not 'light')
+
+
 def elapsed_time(path):
     return path[-1][2]
+
 
 def bridge_problem(here):
     """Modify this to test for goal later: after pulling a state off frontier,
@@ -36,7 +38,7 @@ def bridge_problem(here):
     here = frozenset(here) | frozenset(['light'])
     explored = set()  # set of states we have visited
     # State will be a (people-here, people-there, time-elapsed)
-    frontier = [ [(here, frozenset(), 0)] ]  # ordered list of paths we have blazed
+    frontier = [[(here, frozenset(), 0)]]  # ordered list of paths we have blazed
     if not here:
         return frontier[0]
     while frontier:
@@ -54,9 +56,11 @@ def bridge_problem(here):
                 frontier.sort(key=elapsed_time)
     return []
 
+
 def test():
-    assert bridge_problem(frozenset((1, 2),))[-1][-1] == 2  # the [-1][-1] grabs the total elapsed time
-    assert bridge_problem(frozenset((1, 2, 5, 10),))[-1][-1] == 17
+    assert bridge_problem(frozenset((1, 2), ))[-1][-1] == 2  # the [-1][-1] grabs the total elapsed time
+    assert bridge_problem(frozenset((1, 2, 5, 10), ))[-1][-1] == 17
     return 'tests pass'
+
 
 print test()
